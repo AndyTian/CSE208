@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="3.37/css/bootstrap.css">
+    <link rel="stylesheet" href="validator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="jquery.js"></script>
+    <script src="3.37/js/bootstrap.js"></script>
+    <script type="text/javascript" src="validator/dist/js/bootstrapValidator.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-6 col-md-offset-3  text-center" style="margin-top: 50px;background-color: rgba(220,220,220,0.4)">
+
+
+            <div class="page-header">
+                <h3 class="text-center" style="font-size: 50px;padding:50px">
+                    Reset Password
+                </h3>
+                <div class="description">
+                    <p>
+                        Description...
+                    </p>
+                </div>
+            </div>
+
+        <form id="ResetForm" role="form" action="login.html">
+            <div class="form-group">
+
+                    <div class="input-group ">
+                        <span class="input-group-addon">Username</span>
+                        <input  name="username" required="required"type="text" class="form-control" placeholder="input your username here">
+                    </div>
+            </div>
+
+            <br><br>
+            <div class="form-group">
+                <div class="input-group">
+                        <span class="input-group-addon">New Password</span>
+                        <input  id = "password" name="password"required="required" type="password" class="form-control" placeholder="input your new password here">
+                    </div>
+            </div>
+<br><br>
+            <div class="form-group">
+                <div class="input-group">
+                        <span class="input-group-addon">Confirm Password</span>
+                        <input id="repassword" name="repassword" required="required" type="password" class="form-control" placeholder="input your new password again ">
+                </div>
+            </div>
+                    <br><br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-default">Continue</button>
+                    </div>
+
+
+</form>
+        </div>
+    </div>
+
+
+
+<div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 1080px; width: 1920px; z-index: -1; position: fixed;">
+    <img style="position: absolute; margin: 0px; padding: 0px; border: medium none; width: 1519px; height: 1080px; max-height: none; max-width: none; z-index: -1; left: 0px; top: -267.333px;" src="wlop.jpg"></div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        /**
+         * 下面是进行插件初始化
+         * 你只需传入相应的键值对
+         * */
+        $('#ResetForm').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {/*输入框不同状态，显示图片的样式*/
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {/*验证*/
+                username: {/*键名username和input name值对应*/
+                    message: 'The username is not valid',
+                    validators: {
+                        notEmpty: {/*非空提示*/
+                            message: '用户名不能为空'
+                        },
+                        stringLength: {/*长度提示*/
+                            min: 6,
+                            max: 30,
+                            message: '用户名长度必须在6到30之间'
+                        }/*最后一个没有逗号*/
+                    }
+                },
+                password: {
+                    message:'密码无效',
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: '密码长度必须在6到30之间'
+                        },
+                        identical: {//相同
+                            field: 'password', //需要进行比较的input name值
+                            message: '两次密码不一致'
+                        },
+                        different: {//不能和用户名相同
+                            field: 'username',//需要进行比较的input name值
+                            message: '不能和用户名相同'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: 'The username can only consist of alphabetical, number, dot and underscore'
+                        }
+                    }
+                },
+                repassword: {
+                    message: '密码无效',
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: '密码长度必须在6到30之间'
+                        },
+                        identical: {//相同
+                            field: 'password',
+                            message: '两次密码不一致'
+                        },
+                        different: {//不能和用户名相同
+                            field: 'username',
+                            message: '不能和用户名相同'
+                        },
+                        regexp: {//匹配规则
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: 'The username can only consist of alphabetical, number, dot and underscore'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The email address is required and can\'t be empty'
+                        },
+                        emailAddress: {
+                            message: 'The input is not a valid email address'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
